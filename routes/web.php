@@ -13,12 +13,10 @@
 
 Route::get('/', 'PagesController@index');
 Route::get('/login', 'PagesController@login');
-Route::get('/register', 'PagesControlloer@register');
-Route::get('/test', 'PagesController@testroute');
+Route::get('/register', 'PagesController@register');
 
 Route::redirect('/index', '/');
 
 Auth::routes();
-
 
 Route::get('/home', 'HomeController@index')->name('home');

@@ -8,12 +8,7 @@ class PagesController extends Controller
 {
     public function index()
     {
-        return view('pages.index');
-    }
-
-    public function testroute()
-    {
-        return view('pages.test');
+        return view('index');
     }
 
     public function login()
