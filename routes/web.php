@@ -19,4 +19,7 @@ Route::redirect('/index', '/');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/profile', 'ProfileController@index');
+
+Route::get('/update_profile', 'ProfileController@edit');
+Route::put('/update_profile', 'ProfileController@update')->name('user_update');
