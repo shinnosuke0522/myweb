@@ -23,3 +23,5 @@ Route::get('/profile', 'ProfileController@index');
 
 Route::get('/update_profile', 'ProfileController@edit');
 Route::put('/update_profile', 'ProfileController@update')->name('user_update');
+
+Route::resource('posts', 'PostsController');
