@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'PagesController@index');
+Route::get('/', 'PostsController@index');
 Route::get('/login', 'PagesController@login');
 Route::get('/register', 'PagesController@register');
 
@@ -25,3 +25,4 @@ Route::get('/update_profile', 'ProfileController@edit');
 Route::put('/update_profile', 'ProfileController@update')->name('user_update');
 
 Route::resource('posts', 'PostsController');
+Route::get('/dashboard', 'DashboardController@index');
