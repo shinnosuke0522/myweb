@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
+use Image;
 //use Illuminate\Support\Facades\Request;  
 
 class ProfileController extends Controller
@@ -36,7 +37,7 @@ class ProfileController extends Controller
         return view('profileEdit', ['user'=>$user]);
     }
 
-    public function update(Request $request)
+    public function update_profile(Request $request)
     {   
         //insert current user
         $user = Auth::user();
@@ -45,16 +46,37 @@ class ProfileController extends Controller
         $request->validate([
             'name' => 'required|max:40',
             'email' => 'required',
-            //'bio' => 'max:255'
+            'bio' => 'max:255',
+            //'avatar' => 'image|mimes:jpeg,jpg,png'
         ]);
-
-        //set Form data into User data
+        //set Form data into User data except avater image
         $user->name = $request->name;
         $user->email = $request->email;
         $user->bio = $request->bio;
 
-        // save Updataed data 
+        if($request->hasFile('avatar')){
+            $avatar = $request->file('avatar');
+            $filename =  time() . '.' . $avatar->getClientOriginalExtension();
+            Image::make($avatar)->resize(300, 300)->save(public_path('/avatars/' . $filename ));
+            $user->avatar = $filename;
+        }
         $user->save();
+        
+        // if($request->hasFile('avatar')){
+        //     $avatar = $request->file('avatar');
+        //     $filename =  time() . '.' . $avatar->getClientOriginalExtension();
+        //     Image::make($avatar)->resize(300, 300)->save(public_path('/avatars/' . $filename ));
+        //     $user->name = $request->name;
+        //     $user->email = $request->email;
+        //     $user->bio = $request->bio;
+        //     $user->avatar = $filename;
+        //     $user->save();
+        // }else {
+        //     $user->name = $request->name;
+        //     $user->email = $request->email;
+        //     $user->bio = $request->bio;
+        //     $user->save();
+        // }
 
         //redirect to user information
         return redirect()->to('/profile');

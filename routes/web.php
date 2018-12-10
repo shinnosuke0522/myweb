@@ -22,7 +22,7 @@ Auth::routes();
 Route::get('/profile', 'ProfileController@index');
 
 Route::get('/update_profile', 'ProfileController@edit');
-Route::put('/update_profile', 'ProfileController@update')->name('user_update');
+Route::put('/update_profile', 'ProfileController@update_profile')->name('user_update_profile');
 
 Route::resource('posts', 'PostsController');
 Route::get('/dashboard', 'DashboardController@index');
