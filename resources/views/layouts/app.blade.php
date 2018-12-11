@@ -18,11 +18,16 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <!-- Font Awsome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 </head>
+
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
-            <div class="container">
+        <div class="mynav">
+            <nav class="navbar navbar-expand-md">
+                
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
@@ -39,7 +44,7 @@
                     </ul>
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
+                    <ul class="navbar-nav nav-right">
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
@@ -52,21 +57,24 @@
                             </li>
                         @else
 
-                            <li class="nav-item">
-                                <a class="nav-link" href="/dashboard">Dashboard</a>
-                            </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                    
+                                    {{ Auth::user()->name }}
+                                    <img src="/avatars/{{ Auth::user()->avatar }}" class="nav-photo">
+                                    <span class="caret"></span>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href={{action('ProfileController@index')}}>
                                         Profile 
-                                     </a>
+                                    </a>
+                                    <a class="dropdown-item" href="{{action('DashboardController@index')}}">
+                                        Dashboard
+                                    </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                    onclick="event.preventDefault();
+                                                    document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
@@ -78,10 +86,12 @@
                         @endguest
                     </ul>
                 </div>
-            </div>
-        </nav>
-
-        <main class="py-4">
+            </nav>
+            {{-- Nav Image --}}
+            <img src="{{ asset('default_images/home.jpg') }}" width="100%">
+        </div>
+        
+        <main class="py-4 container">
             {{-- @include('layouts.messages') --}}
             @yield('content')
         </main>

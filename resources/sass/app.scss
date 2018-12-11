@@ -8,22 +8,136 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-.navbar-laravel {
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+body {
+  background-color: black;
+}
+.pageTitle {
+  color: white;
+}
+.auther-option {
+  a, button {
+    color: green;
+  }
 }
 
-.avatar_photo{
+//Post Page Style
+.post-card{
+  height: 80px; 
+}
+.post-auth {
+  float: right;
+}
+.auther-option {
+  float: right;
+}
+.contntsLabel {
+  font-size: 20px;
+}
+.edit-card-body {
+  background-color: white;
+}
+
+// Profile Page style
+.avatar_photo {
   width: 120px;
   height: 120px;
   border-radius: 50%;
   margin: auto;
 }
-.profile-edit-left{
+.profile-left {
+  text-align: center;
+  align-items: center;
+  margin-right: 0px;
+}
+.profile-right {
+  margin-left: 0px;
+  padding-right: 0px; 
+  a {
+    float: right;
+    margin-right: 50px;
+  }
+}
+.profile-edit-left {
   align-items: center;
   text-align:　center;
 }
-.btn-update-profile{
+.btn-update-profile {
   float: right;
   margin-right: 40px;
+}
+
+// Dashboard Style
+.dash-card {
+  h1{
+    color: red;
+    text-align: center;
+  }
+  .creat-btn {
+    margin-right: 30px;
+    color: red !important;
+  }
+  .edit-icon {
+    color: red;
+  }
+}
+.dash-list {
+  ul {
+    margin: auto;
+    width: 97%;
+  }
+  li {
+    button{
+      color: red;
+    }
+  }
+  .dash-title {
+    font-size: 18px;
+    color: #330066;
+  }
+}
+
+// Navbar Style
+.mynav {
+  position: relative;
+
+  .navbar-brand {
+    font-style: italic;
+    font-size: 35px;
+    margin-left: 20px;
+    margin-right: 30px;
+  }
+  .navbar {
+    // height: 120px !important;
+    position: absolute;
+    width: 100%;
+
+    a { 
+      color: white;
+    }
+    .navbar-collapse {
+      height: 80px;
+    }
+    .nav-link { 
+      font-size: 22px; 
+    }
+    .nav-right{
+      max-width: 500px;
+    }
+    .dropdown-menu {
+      width: 300px !important;
+      background-color: #FF0000; 
+    }
+    .dropdown-item {
+      font-size: 18px;
+    }
+    .dropdown-item:hover, .dropdown-item:active {
+      background-color: #800000;
+    }
+
+  }
+}
+.nav-photo {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
 }

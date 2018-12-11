@@ -10468,10 +10468,37 @@ a.text-dark:focus {
   }
 }
 
-.navbar-laravel {
-  background-color: #fff;
-  -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
-          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+body {
+  background-color: black;
+}
+
+.pageTitle {
+  color: white;
+}
+
+.auther-option a,
+.auther-option button {
+  color: green;
+}
+
+.post-card {
+  height: 80px;
+}
+
+.post-auth {
+  float: right;
+}
+
+.auther-option {
+  float: right;
+}
+
+.contntsLabel {
+  font-size: 20px;
+}
+
+.edit-card-body {
+  background-color: white;
 }
 
 .avatar_photo {
@@ -10479,6 +10506,24 @@ a.text-dark:focus {
   height: 120px;
   border-radius: 50%;
   margin: auto;
+}
+
+.profile-left {
+  text-align: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-right: 0px;
+}
+
+.profile-right {
+  margin-left: 0px;
+  padding-right: 0px;
+}
+
+.profile-right a {
+  float: right;
+  margin-right: 50px;
 }
 
 .profile-edit-left {
@@ -10491,5 +10536,85 @@ a.text-dark:focus {
 .btn-update-profile {
   float: right;
   margin-right: 40px;
+}
+
+.dash-card h1 {
+  color: red;
+  text-align: center;
+}
+
+.dash-card .creat-btn {
+  margin-right: 30px;
+  color: red !important;
+}
+
+.dash-card .edit-icon {
+  color: red;
+}
+
+.dash-list ul {
+  margin: auto;
+  width: 97%;
+}
+
+.dash-list li button {
+  color: red;
+}
+
+.dash-list .dash-title {
+  font-size: 18px;
+  color: #330066;
+}
+
+.mynav {
+  position: relative;
+}
+
+.mynav .navbar-brand {
+  font-style: italic;
+  font-size: 35px;
+  margin-left: 20px;
+  margin-right: 30px;
+}
+
+.mynav .navbar {
+  position: absolute;
+  width: 100%;
+}
+
+.mynav .navbar a {
+  color: white;
+}
+
+.mynav .navbar .navbar-collapse {
+  height: 80px;
+}
+
+.mynav .navbar .nav-link {
+  font-size: 22px;
+}
+
+.mynav .navbar .nav-right {
+  max-width: 500px;
+}
+
+.mynav .navbar .dropdown-menu {
+  width: 300px !important;
+  background-color: #FF0000;
+}
+
+.mynav .navbar .dropdown-item {
+  font-size: 18px;
+}
+
+.mynav .navbar .dropdown-item:hover,
+.mynav .navbar .dropdown-item:active {
+  background-color: #800000;
+}
+
+.nav-photo {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
 }
 

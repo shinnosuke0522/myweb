@@ -49,6 +49,7 @@ class ProfileController extends Controller
             'bio' => 'max:255',
             //'avatar' => 'image|mimes:jpeg,jpg,png'
         ]);
+
         //set Form data into User data except avater image
         $user->name = $request->name;
         $user->email = $request->email;
@@ -60,23 +61,9 @@ class ProfileController extends Controller
             Image::make($avatar)->resize(300, 300)->save(public_path('/avatars/' . $filename ));
             $user->avatar = $filename;
         }
+
+        // save updated User Information to DB
         $user->save();
-        
-        // if($request->hasFile('avatar')){
-        //     $avatar = $request->file('avatar');
-        //     $filename =  time() . '.' . $avatar->getClientOriginalExtension();
-        //     Image::make($avatar)->resize(300, 300)->save(public_path('/avatars/' . $filename ));
-        //     $user->name = $request->name;
-        //     $user->email = $request->email;
-        //     $user->bio = $request->bio;
-        //     $user->avatar = $filename;
-        //     $user->save();
-        // }else {
-        //     $user->name = $request->name;
-        //     $user->email = $request->email;
-        //     $user->bio = $request->bio;
-        //     $user->save();
-        // }
 
         //redirect to user information
         return redirect()->to('/profile');

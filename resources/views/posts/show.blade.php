@@ -5,20 +5,35 @@
         @if($post)
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">{{$post->title}}</h4>
-                    <h5 class="card-subtitle mb-2 text-muted">Written on {{$post->created_at}} by {{$post->user->name}}</h5>
+                    <h2 class="card-title text-center">{{$post->title}}</h2>
+                    <h5 class="card-subtitle mb-2 text-muted text-right" style="font-size:14px;">
+                        by {{$post->user->name}}
+                    </h5>
+                    <h5 class="card-subtitle mb-2 text-muted text-right" style="font-size:14px;">
+                        Written on {{$post->created_at}}
+                    </h5>
                     <p class="card-text">{{$post->body}}</p>
 
-                    @if(!Auth::guest())
-                        @if(Auth::User()->id == $post->user_id)
-                            <a href="/posts/{{$post->id}}/edit" class="card-link">Edit</a>
+                    <div class="auther-option">
+                        @if(!Auth::guest())
+                            @if(Auth::User()->id == $post->user_id)
 
-                            {!! Form::open(['action' => ['PostsController@destroy', $post->id], 'method' => 'POST', 'class' => 'float-right']) !!}
-                                {{Form::hidden('_method', 'DELETE')}}
-                                {{Form::submit('Delete', ['class' => 'btn btn-danger'])}}
-                            {!! Form::close() !!}
+                                <form method="post"
+                                    action="{{ action('PostsController@destroy', $post->id) }}">
+                                    @csrf
+                                    @method('DELETE')
+                                    <a href="/posts/{{$post->id}}/edit" class="mr-1">
+                                        <span class="far fa-edit fa-2x"></span>
+                                    </a>
+
+                                    <button type="submit" class="btn btn-link">
+                                        <span class="far fa-trash-alt fa-2x"></span>
+                                    </button>
+                                </form>
+                            @endif
                         @endif
-                    @endif
+                    </div>
+                    
                 </div>
             </div>
         @else
