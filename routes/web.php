@@ -29,4 +29,5 @@ Route::resource('posts', 'PostsController');
 Route::get('/dashboard', 'DashboardController@index');
 
 Route::get('/users', 'UserController@index');
+Route::get('users/excel-export', 'UserController@export');
 Route::get('/users/{id}', 'UserController@show');
