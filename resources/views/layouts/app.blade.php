@@ -41,6 +41,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/posts">Posts</a>
                         </li>
+                        <li>
+                            <a class="nav-link" href="/users">User</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

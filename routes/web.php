@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\UserController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,9 +22,11 @@ Route::redirect('/index', '/');
 Auth::routes();
 
 Route::get('/profile', 'ProfileController@index');
-
 Route::get('/update_profile', 'ProfileController@edit');
 Route::put('/update_profile', 'ProfileController@update_profile')->name('user_update_profile');
 
 Route::resource('posts', 'PostsController');
 Route::get('/dashboard', 'DashboardController@index');
+
+Route::get('/users', 'UserController@index');
+Route::get('/users/{id}', 'UserController@show');

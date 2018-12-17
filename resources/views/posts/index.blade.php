@@ -8,7 +8,11 @@
                 <div class="card post-card">
                     <div class="card-body">
                         <h5 class="card-title">
-                            <a href="/posts/{{$post->id}}">{{$post->title}}</a>
+                            <strong>
+                                <a style="color:red;" href="/posts/{{$post->id}}">
+                                    {{$post->title}}
+                                </a>
+                            </strong>
                         </h5>
                         <p class="mb-2 text-muted post-auth">
                             Written on {{$post->created_at}} by {{$post->user->name}}
