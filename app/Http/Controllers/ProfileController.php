@@ -58,7 +58,10 @@ class ProfileController extends Controller
         if($request->hasFile('avatar')){
             $avatar = $request->file('avatar');
             $filename =  time() . '.' . $avatar->getClientOriginalExtension();
-            Image::make($avatar)->resize(300, 300)->save(public_path('/avatars/' . $filename ));
+            $img_av = Image::make($avatar)->widen(320);
+            $water_mark = Image::make('default_images/watermark.png')->resize(60,60);
+            $img_av->insert($water_mark,'bottom-right');
+            $img_av->save(public_path('/avatars/' . $filename ));
             $user->avatar = $filename;
         }
 

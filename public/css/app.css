@@ -10515,6 +10515,11 @@ body {
   margin: auto;
 }
 
+.abatarBtn {
+  background-color: rgba(255, 255, 255, 0.9);
+  border: none;
+}
+
 .profile-left {
   text-align: center;
   -webkit-box-align: center;

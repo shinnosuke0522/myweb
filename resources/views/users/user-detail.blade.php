@@ -7,7 +7,24 @@
              <br>
             <div class="row">
                 <div class="col-sm-3 profile-left">
-                    <img src="/avatars/{{$selected_user->avatar}}" class="avatar_photo">
+                    <button class="abatarBtn" data-toggle="modal" data-target="#exampleModal">
+                        <img src="/avatars/{{$selected_user->avatar}}" class="avatar_photo">
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    <div>
+                                    <img src="/avatars/{{$selected_user->avatar}}" class="mt-3">
+                                    <button type="button" data-dismiss="modal"
+                                    class="btn btn-denger float-right">X</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 
                 <div class="col-sm-9 profile-right" style="font-size: 20px;">
