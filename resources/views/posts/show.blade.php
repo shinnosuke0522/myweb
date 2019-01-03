@@ -5,7 +5,9 @@
         @if($post)
             <div class="card flex-row flex-wrap">
                 <div class="card-header border-0">
-                    <img style="width: 400px" src="/storage/cover_images/{{$post->cover_image}}" alt="">
+                    <img style="width: 400px" src="/storage/post_censored_watermark/{{$post->cover_image}}"
+                         onmouseover="this.src='/storage/cover_images/{{$post->cover_image}}';"
+                         onmouseout="this.src='/storage/post_censored_watermark/{{$post->cover_image}}';"/>
                 </div>
                 <div class="card-block px-2">
                     <h2 class="card-title text-center">{{$post->title}}</h2>

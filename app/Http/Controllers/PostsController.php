@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\Post;
+use Image;
 
 class PostsController extends Controller
 {
@@ -49,11 +50,28 @@ class PostsController extends Controller
         ]);
 
         if($request->hasFile('cover_image')){
+            //Unique FileName
             $filenameWithExt = $request->file('cover_image')->getClientOriginalName();
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             $extension = $request->file('cover_image')->getClientOriginalExtension();
             $fileNameToStore= $filename.'_'.time().'.'.$extension;
-            $path = $request->file('cover_image')->storeAs('public/cover_images', $fileNameToStore);
+
+            //Resize File to 500px width
+            $image = $request->file('cover_image');
+            $img = Image::make($image);
+            $img->resize(500, null, function ($constraint) {$constraint->aspectRatio();});
+            $imglocation = storage_path('app/public/cover_images/' . $fileNameToStore);
+            $img->save($imglocation);
+
+            //Adding Pixelation & Watermark
+            $censored = Image::make($img);
+            $censored->pixelate(12);
+            $water_mark = Image::make('default_images/clickme.png')->resize(125,125);
+            $censored->insert($water_mark, 'center');
+
+            $cenlocation = storage_path('app/public/post_censored_watermark/' . $fileNameToStore);
+            $censored->save($cenlocation);
+
         } else {
             $fileNameToStore = 'noimage.jpg';
         }
@@ -113,11 +131,29 @@ class PostsController extends Controller
         ]);
 
         if($request->hasFile('cover_image')){
+            //Unique FileName
             $filenameWithExt = $request->file('cover_image')->getClientOriginalName();
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             $extension = $request->file('cover_image')->getClientOriginalExtension();
             $fileNameToStore= $filename.'_'.time().'.'.$extension;
-            $path = $request->file('cover_image')->storeAs('public/cover_images', $fileNameToStore);
+
+            //Resize File to 500px width
+            $image = $request->file('cover_image');
+            $img = Image::make($image);
+            $img->resize(500, null, function ($constraint) {$constraint->aspectRatio();});
+            $imglocation = storage_path('app/public/cover_images/' . $fileNameToStore);
+            $img->save($imglocation);
+
+            //Adding Pixelation & Watermark
+            $censored = Image::make($img);
+            $censored->pixelate(12);
+            $water_mark = Image::make('default_images/clickme.png')->resize(125,125);
+            $censored->insert($water_mark, 'center');
+
+            $cenlocation = storage_path('app/public/post_censored_watermark/' . $fileNameToStore);
+            $censored->save($cenlocation);
+        } else {
+            $fileNameToStore = 'noimage.jpg';
         }
 
         $post = Post::find($id);
@@ -126,6 +162,7 @@ class PostsController extends Controller
         if($request->hasFile('cover_image')){
             if ($post->cover_image != 'noimage.jpg') {
                 Storage::delete('public/cover_images/'.$post->cover_image);
+                Storage::delete('public/post_censored_watermark/'.$post->cover_image);
             }
             $post->cover_image = $fileNameToStore;
         }
@@ -151,6 +188,7 @@ class PostsController extends Controller
         if($post->cover_image != 'noimage.jpg'){
             // Delete Image
             Storage::delete('public/cover_images/'.$post->cover_image);
+            Storage::delete('public/post_censored_watermark/'.$post->cover_image);
         }
 
         $post->delete();
