@@ -72,9 +72,15 @@
                                     <a class="dropdown-item" href={{action('ProfileController@index')}}>
                                         Profile 
                                     </a>
+
                                     <a class="dropdown-item" href="{{action('DashboardController@index')}}">
                                         Dashboard
                                     </a>
+
+                                    <a class="dropdown-item" href="{{ url('email')}}">
+                                        Contact
+                                    </a>
+
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
                                                     document.getElementById('logout-form').submit();">

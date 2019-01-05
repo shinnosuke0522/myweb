@@ -10578,6 +10578,15 @@ body {
   color: #330066;
 }
 
+.email-form {
+  padding-left: 50px;
+  padding-right: 50px;
+}
+
+.email-form textarea {
+  height: 200px;
+}
+
 .mynav {
   position: relative;
 }

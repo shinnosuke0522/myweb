@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\SendEmailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,13 +22,18 @@ Route::redirect('/index', '/');
 
 Auth::routes();
 
+// Profile
 Route::get('/profile', 'ProfileController@index');
 Route::get('/update_profile', 'ProfileController@edit');
 Route::put('/update_profile', 'ProfileController@update_profile')->name('user_update_profile');
-
+//Post
 Route::resource('posts', 'PostsController');
 Route::get('/dashboard', 'DashboardController@index');
-
+//User
 Route::get('/users', 'UserController@index');
 Route::get('users/excel-export', 'UserController@export');
 Route::get('/users/{id}', 'UserController@show');
+
+//Email
+Route::get('email', 'SendEmailController@writeEmail');
+Route::post('email/send', 'SendEmailController@sendEmail');
