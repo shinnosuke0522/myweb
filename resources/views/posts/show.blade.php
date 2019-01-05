@@ -3,41 +3,49 @@
 @section('content')
     <div class="container">
         @if($post)
-            <div class="card">
-                <div class="card-body">
+            <div class="card flex-row flex-wrap">
+                <div class="card-header border-0">
+                    <img style="width: 400px" src="/storage/post_censored_watermark/{{$post->cover_image}}"
+                         onmouseover="this.src='/storage/cover_images/{{$post->cover_image}}';"
+                         onmouseout="this.src='/storage/post_censored_watermark/{{$post->cover_image}}';"/>
+                </div>
+                <div class="card-block px-2">
                     <h2 class="card-title text-center">{{$post->title}}</h2>
-                    <h5 class="card-subtitle mb-2 text-muted text-right" style="font-size:14px;">
-                        by {{$post->user->name}}
-                    </h5>
-                    <h5 class="card-subtitle mb-2 text-muted text-right" style="font-size:14px;">
-                        Written on {{$post->created_at}}
-                    </h5>
                     <p class="card-text">{{$post->body}}</p>
-
+                </div>
+                <div class="w-100"></div>
+                <div class="card-footer w-100 text-muted">
                     <div class="auther-option">
                         @if(!Auth::guest())
                             @if(Auth::User()->id == $post->user_id)
 
                                 <form method="post"
-                                    action="{{ action('PostsController@destroy', $post->id) }}">
+                                      action="{{ action('PostsController@destroy', $post->id) }}">
                                     @csrf
                                     @method('DELETE')
-                                    <a href="/posts/{{$post->id}}/edit" class="mr-1">
-                                        <span class="far fa-edit fa-2x"></span>
+
+                                    <a href="/posts/{{$post->id}}/edit">
+                                        <span class="far fa-edit fa-lg edit-icon"></span>
                                     </a>
 
                                     <button type="submit" class="btn btn-link">
-                                        <span class="far fa-trash-alt fa-2x"></span>
+                                        <span class="far fa-trash-alt fa-lg"></span>
                                     </button>
+
+                                    <a href={{ url('posts') }} class="btn btn-danger" style="color: #fff">
+                                    Go Back
+                                    </a>
+
                                 </form>
                             @endif
                         @endif
                     </div>
-                    
+                    Written on {{$post->created_at}} by {{$post->user->name}}
                 </div>
             </div>
+            </div>
         @else
-            <p>Post with that ID does not exist.</p>
+            <p style="color:white">Post with that ID does not exist.</p>
         @endif
     </div>
 @endsection
