@@ -9,7 +9,10 @@
                     <h1>Your Posts</h1>
                     <a class="float-right btn-link creat-btn" href="/posts/create" 
                         role="button" style="margin-bottom: 15px">
-                        <span class="fas fa-plus fa-2x">
+                        <span class="fas fa-plus fa-2x"></span>
+                    </a>
+                    <a class="float-right" style="margin-right: 20px; margin-top: 4px; color: red" href="/userpdf">
+                        <span>Download your posts as PDF</span>
                     </a>
                 </div>
 
@@ -50,7 +53,7 @@
                         <p>You have no posts.</p>
                     @endif
                 </div>
-            </div>
+            </>
         </div>    
     </div>
 @endsection

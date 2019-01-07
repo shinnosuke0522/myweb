@@ -4,14 +4,14 @@
     <div class="container">
         @if($post)
             <div class="card flex-row flex-wrap">
-                <div class="card-header border-0">
-                    <img style="width: 400px" src="/storage/post_censored_watermark/{{$post->cover_image}}"
+                <div class="card-header border-0" style="max-width: 40%">
+                    <img style="width: 400px; height: auto;" src="/storage/post_censored_watermark/{{$post->cover_image}}"
                          onmouseover="this.src='/storage/cover_images/{{$post->cover_image}}';"
                          onmouseout="this.src='/storage/post_censored_watermark/{{$post->cover_image}}';"/>
                 </div>
-                <div class="card-block px-2">
-                    <h2 class="card-title text-center">{{$post->title}}</h2>
-                    <p class="card-text">{{$post->body}}</p>
+                <div class="card-block px-2" style="width: 60%">
+                    <h2 class="card-title">{{$post->title}}</h2>
+                    <p class="card-text" style="word-break: break-all;">{{$post->body}}</p>
                 </div>
                 <div class="w-100"></div>
                 <div class="card-footer w-100 text-muted">

@@ -26,9 +26,14 @@ Auth::routes();
 Route::get('/profile', 'ProfileController@index');
 Route::get('/update_profile', 'ProfileController@edit');
 Route::put('/update_profile', 'ProfileController@update_profile')->name('user_update_profile');
+
 //Post
 Route::resource('posts', 'PostsController');
 Route::get('/dashboard', 'DashboardController@index');
+
+//User PDF
+Route::get('/userpdf', 'DashboardController@pdf');
+
 //User
 Route::get('/users', 'UserController@index');
 Route::get('users/excel-export', 'UserController@export');
