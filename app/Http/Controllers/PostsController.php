@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use App\Post;
 use App\favorite;
+use App\Comment;
 use Image;
 
 class PostsController extends Controller
@@ -98,7 +99,8 @@ class PostsController extends Controller
     {
         $post = Post::find($id);
         $favorite = favorite::where('post_id', $id)->where('user_id', Auth::id())->first();
-        return view('posts.show')->with(array('post'=>$post, 'favorite'=>$favorite));
+        $comments = Comment::where('post_id', $post->id)->orderBy('created_at', 'DESC')->get();
+        return view('posts.show')->with(array('post'=>$post, 'favorite'=>$favorite, 'comments'=>$comments));
     }
 
     /**

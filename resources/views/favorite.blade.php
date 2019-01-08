@@ -27,8 +27,9 @@
                             </div>
                         </li>
                     @endforeach
+                </ul>
             @else
-                <p> you don't have favorite posts</p>
+                <p> You don't have favorite posts</p>
             @endif
         </div>
     </div>

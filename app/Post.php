@@ -15,4 +15,8 @@ class Post extends Model
     public function added_by(){
         return favorite::where('user_id', Auth::user()->id)->first();
     }
+
+    public function comments(){
+        return $this->hasMany('App\Comment');
+    }
 }

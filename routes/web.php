@@ -47,3 +47,7 @@ Route::post('email/send', 'SendEmailController@sendEmail');
 Route::get('favorite-list','FavoriteController@index');
 Route::post('posts/{post_id}/favorite', 'FavoriteController@store');
 Route::delete('posts/{post_id}/favorite', 'FavoriteController@destroy');
+
+//Comments
+Route::post('posts/{post_id}/comment', 'CommentsController@store');
+Route::delete('comment/{post_id}', 'CommentsController@destroy');

@@ -3,22 +3,7 @@
 @section('content')
 <div class="container">
     <div class="card email-form">
-
-        @if($errors->any())
-            <div class="alert alert-warning" role="alert">
-                @foreach ($errors->all() as $error)
-                    <strong>Error : </strong>{{$error}}<br>
-                @endforeach
-            </div>
-        @endif
-
-        @if($message = Session::get('success'))
-            <div class="alert alert-success" role="alert">
-                {{$message}}
-            </div>
-        @endif
-
-        <h1>Quession</h1>
+        <h1>Question</h1>
         <form class="mx-6" method="post" action="{{ url('email/send') }}">
             @csrf
             @method('POST')

@@ -22,7 +22,7 @@ class FavoriteController extends Controller
      */
     public function index(){
         $user_id = Auth::user()->id;
-        $favorites = favorite::where('user_id', 5)->get();
+        $favorites = favorite::where('user_id', $user_id)->get();
         
         $posts = [];
         foreach($favorites as $fav){

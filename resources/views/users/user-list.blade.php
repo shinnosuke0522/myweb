@@ -2,9 +2,16 @@
 
 @section('content')
     <div class="container">
-        <h1 class="pageTitle">User List</h1>
+        <div style="display: inline-block; width: 100%;">
+            <div style="width: 20%; display: inline-block">
+            <h1 class="pageTitle">User List</h1>
+            </div>
+            <div style="width: 70%; display: inline-block;">
+                <a href="/users/excel-export">Export Users Information in Excel</a>
+            </div>
+        </div>
         <div class="card">
-            <ul class="list-group">
+            <div class="list-group">
                 @foreach ($users as $user)
                     <a href="/users/{{$user->id}}" style="color: red;">
                         <li class="list-group-item">

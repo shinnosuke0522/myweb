@@ -32,7 +32,7 @@
                                         <span class="far fa-trash-alt fa-lg"></span>
                                     </button>
 
-                                    <a href={{ url('posts') }} class="btn btn-danger" style="color: #fff">
+                                    <a href="{{ url('posts') }}" class="btn btn-danger" style="color: #fff">
                                     Go Back
                                     </a>
 
@@ -54,7 +54,7 @@
                                         @method('POST')
                                         <button type="submit" class="btn btn-link">
                                             <span class="far fa-star fa-lg"></span>
-                                        <button>
+                                        </button>
                                     </form>
                                 @endif
                             @endif
@@ -62,6 +62,59 @@
                     </div>
                     Written on {{$post->created_at}} by {{$post->user->name}}
                 </div>
+            </div>
+            <div class="addcomment">
+                @if(!Auth::guest())
+                    <div style="width: 100%; height: auto; padding: 20px 0;">
+                        <div style="width: 65px; height: 65px; display: inline-block; vertical-align: middle;">
+                            <img style="width: 100%; height: 100%; border-radius: 50%;" src="/avatars/{{Auth::User()->avatar}}">
+                        </div>
+                        <div style="display: inline-block; vertical-align: middle; margin-left: 10px; width: calc(100% - 80px); min-height: 65px; margin-left: 10px; padding: 5px 10px; font-size: .9rem; color: #555; background-color: #c6e0f5">
+                            {!! Form::open([ 'action' => ['CommentsController@store', $post->id],'method' => 'POST']) !!}
+                            <div class="form-group" style="margin-bottom: 3px;">
+                                {{Form::text('body', '', ['class' => 'form-control', 'placeholder' => 'Join the conversation...'])}}
+                            </div>
+                            <div class="form-group">
+                                {{Form::submit('Submit', ['class' => 'float-right btn btn-primary btn-sm'])}}
+                            </div>
+                            {!! Form::close() !!}
+                        </div>
+                    </div>
+                @endif
+            </div>
+            <div class="commentsection">
+                @if($comments)
+                    @foreach($comments as $comment)
+                        <div style="width: 100%; height: auto; padding: 20px 0;">
+                            <div style="width: 65px; height: 65px; display: inline-block; vertical-align: middle;">
+                                <img style="width: 100%; height: 100%; border-radius: 50%;" src="/avatars/{{$comment->user->avatar}}">
+                            </div>
+                            <div style="display: inline-block; vertical-align: middle; width: calc(100% - 80px); min-height: 65px; margin-left: 10px; padding: 5px 10px; font-size: .9rem; color: #555; background-color: #c6e0f5">
+                                <div style="width: 95%; display: inline-block;">
+                                    <p style="margin: 0px; font-size: x-small">By <a href="/users/{{$comment->user_id}}" style="">{{$comment->user->name}}</a> on {{$comment->created_at}}</p>
+                                    <p style="margin-top: -2px; word-break: break-all">{{$comment->body}}</p>
+                                </div>
+                                @if(!Auth::guest())
+                                    @if(Auth::User()->id == $comment->user_id)
+                                        <div style="width: 4%; display: inline-block">
+                                            <form method="post"
+                                              action="{{ action('CommentsController@destroy', $comment->id)}}">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-link">
+                                                <span style="color: red" class="far fa-trash-alt fa-lg"></span>
+                                            </button>
+                                        </form>
+                                        </div>
+                                    @endif
+                                @endif
+
+
+                            </div>
+                        </div>
+                    @endforeach
+                @endif
+
             </div>
             </div>
         @else
