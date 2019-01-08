@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 use App\Post;
+use App\favorite;
 use Image;
 
 class PostsController extends Controller
@@ -95,7 +97,8 @@ class PostsController extends Controller
     public function show($id)
     {
         $post = Post::find($id);
-        return view('posts.show')->with('post', $post);
+        $favorite = favorite::where('post_id', $id)->where('user_id', Auth::id())->first();
+        return view('posts.show')->with(array('post'=>$post, 'favorite'=>$favorite));
     }
 
     /**

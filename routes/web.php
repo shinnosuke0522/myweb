@@ -42,3 +42,8 @@ Route::get('/users/{id}', 'UserController@show');
 //Email
 Route::get('email', 'SendEmailController@writeEmail');
 Route::post('email/send', 'SendEmailController@sendEmail');
+
+//Favorite
+Route::get('favorite-list','FavoriteController@index');
+Route::post('posts/{post_id}/favorite', 'FavoriteController@store');
+Route::delete('posts/{post_id}/favorite', 'FavoriteController@destroy');

@@ -37,6 +37,26 @@
                                     </a>
 
                                 </form>
+                            @else
+                                @if($favorite)
+                                    <form method="post"
+                                        action="{{ action('FavoriteController@destroy', $post->id)}}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-link">
+                                            <span class="fas fa-star fa-lg"></span>
+                                        </button>
+                                    </form>
+                                @else
+                                    <form method="post"
+                                        action="{{ action('FavoriteController@store', $post->id) }}">
+                                        @csrf
+                                        @method('POST')
+                                        <button type="submit" class="btn btn-link">
+                                            <span class="far fa-star fa-lg"></span>
+                                        <button>
+                                    </form>
+                                @endif
                             @endif
                         @endif
                     </div>
