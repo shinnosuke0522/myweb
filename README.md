@@ -22,7 +22,9 @@ In this repository you can see our app deliverables and source code for our WEB3
 * Image Manipulation (Watermark & Scaling)
 * Extra features: Favorites
 * Extra features: Mailing service
+* Extra Feature: Sending Contact to addminister's email address
 * Styling of the forms/website
+* AUthentication API 
 
 
 
